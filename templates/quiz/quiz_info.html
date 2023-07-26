@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>クイズID{{quiz[0][0]}}</h3>
+    <h3>クイズタイトル：{{quiz[0][1]}}</h3>
+    <h3>クイズタイプ：{{quiz[0][2]}}</h3>
+    <h3>クイズ：内容：{{quiz[0][3]}}</h3>
+    <h3>クイズ答え：{{quiz[0][4]}}</h3>
+    <h3>クイズ選択肢１：{{quiz[0][5]}}</h3>
+    <h3>クイズ選択肢２：{{quiz[0][6]}}</h3>
+    <h3>クイズ選択肢３：{{quiz[0][7]}}</h3>
+    <h3>クイズ選択肢４：{{quiz[0][8]}}</h3>
+    <a href="{{url_for('quiz.quiz_delete',quiz_number= quiz[0][0],quiz_title = quiz[0][1],quiz_type = quiz[0][2],quiz_content = quiz[0][3],quiz_answer = quiz[0][4],quiz_choice1=quiz[0][5],quiz_choice2=quiz[0][6],quiz_choice3 = quiz[0][7],quiz_choice4=quiz[0][8]) }}">削除</a>
+    <a href="{{url_for('quiz.quiz_update',quiz_number= quiz[0][0],quiz_title = quiz[0][1],quiz_type = quiz[0][2],quiz_content = quiz[0][3],quiz_answer = quiz[0][4],quiz_choice1=quiz[0][5],quiz_choice2=quiz[0][6],quiz_choice3 = quiz[0][7],quiz_choice4=quiz[0][8]) }}">編集</a>
+
+</body>
+</html>

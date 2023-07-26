@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>以下のクイズを削除します</h1>
+    <h3>クイズID{{quiz_number}}</h3>
+    <h3>クイズタイトル：{{quiz_title}}</h3>
+    <h3>クイズタイプ：{{quiz_type}}</h3>
+    <h3>クイズ：内容：{{quiz_content}}</h3>
+    <h3>クイズ答え：{{quiz_answer}}</h3>
+    <h3>クイズ選択肢１：{{quiz_choice1}}</h3>
+    <h3>クイズ選択肢２：{{quiz_choice2}}</h3>
+    <h3>クイズ選択肢３：{{quiz_choice3}}</h3>
+    <h3>クイズ選択肢４：{{quiz_choice4}}</h3>
+    <a href="{{url_for('quiz.quiz_delete_exe',number= quiz_number) }}">はい</a>
+    <a href="{{url_for('quiz.quiz_info',id= quiz_number) }}">いいえ</a>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>クイズ登録画面</h3>
+    {% if error != null %}
+        <p style="color:red">{{error}}</p>
+    {% endif %}
+    <form action="{{url_for('quiz.quiz_register_exe')}}" method="post">
+        クイズタイトル：<input type="text"name= "quiz_title"><br>
+        クイズタイプ:<select name="quiz_type">
+            {% for type in type_list%}
+            <option value={{type[1]}}>{{type[1]}}</option>
+            {% endfor%}
+        </select><br>
+        クイズ内容：<input type="text"name="quiz_content"><br>
+        クイズ答え：
+        <input type="radio" name="quiz_answer" value="1" required>選択肢１
+        <input type="radio" name="quiz_answer" value="2" required>選択肢２
+        <input type="radio" name="quiz_answer" value="3" required>選択肢３
+        <input type="radio" name="quiz_answer" value="4" required>選択肢４
+
+        クイズ選択肢１：<input type="text" name="quiz_choice1" value="1" required><br>
+        クイズ選択肢２：<input type="text" name="quiz_choice2" value="2" required><br>
+        クイズ選択肢３：<input type="text" name="quiz_choice3" value="3" required><br>
+        クイズ選択肢４：<input type="text" name="quiz_choice4" value="4" required><br>
+        <a href= "{{url_for('quiz.quiz_type_register_form')}}">クイズタイプ登録</a>
+        <button type="submit">登録</button>
+    </form>
+</body>
+</html>
