@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
@@ -38,11 +38,13 @@
           </div>
         </div>
       </nav>
-    
-    <h1>クイズ登録しました。</h1>
-    <a href= "{{url_for('quiz.quiz_register')}}">続けてクイズ登録</a>
-    <a href= "{{url_for('mypage')}}">トップへ</a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        
+    <div class="container mt-4">
+        <h1>{{ session['user'][1] }}さんの前回の１０問回答の結果</h1>
+        <h1>{{ user_one_log[0][2] }}/10でした。</h1>
+    </div>
 
+    <!-- Bootstrap JS (optional, if you need to use Bootstrap's JavaScript components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -3,9 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Document</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{url_for('mypage')}}"><img src="static/img/favicon.ico"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBasic" aria-controls="navbarBasic" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarBasic">
+            <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('mypage')}}">Top</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('quiz.quiz_list')}}">一覧</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user.user_log')}}">回答履歴</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user.user_rank')}}">ランキング</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user.user_info')}}">アカウント</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('logout')}}">ログアウト</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
     <h3>クイズ編集画面</h3>
     {% if error != null %}
         <p style="color:red">{{error}}</p>
@@ -16,19 +49,21 @@
             {% for type in type_list%}
             <option value={{type[1]}}>{{type[1]}}</option>
             {% endfor%}
-        </select>
+        </select><br>
         クイズ内容：<input type="text"name="quiz_content" value={{quiz_content}}><br>
         クイズ答え：
         <input type="radio" name="quiz_answer" value="1" required>選択肢１
         <input type="radio" name="quiz_answer" value="2" required>選択肢２
         <input type="radio" name="quiz_answer" value="3" required>選択肢３
         <input type="radio" name="quiz_answer" value="4" required>選択肢４
-
+<br>
         クイズ選択肢１：<input type="text" name="quiz_choice1" value={{quiz_choice1}} required><br>
         クイズ選択肢２：<input type="text" name="quiz_choice2" value={{quiz_choice2}} required><br>
         クイズ選択肢３：<input type="text" name="quiz_choice3" value={{quiz_choice3}} required><br>
         クイズ選択肢４：<input type="text" name="quiz_choice4" value={{quiz_choice4}} required><br>
         <button type="submit">登録</button>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -193,3 +193,68 @@ def update_quiz(quiz_number,quiz_title,quiz_type,quiz_content,quiz_answer,quiz_c
         connection.close()
         
     return count
+
+def insert_quiz_log(user_id,name,score,quiznumber1,quiznumber2,quiznumber3,quiznumber4,quiznumber5,quiznumber6,quiznumber7,quiznumber8,quiznumber9,quiznumber10):
+    sql = "INSERT INTO python_quiz_log VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    
+    # 例外処理
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()
+        
+        cursor.execute(sql, (user_id,name,score,quiznumber1,quiznumber2,quiznumber3,quiznumber4,quiznumber5,quiznumber6,quiznumber7,quiznumber8,quiznumber9,quiznumber10,))
+        
+        count = cursor.rowcount
+        connection.commit()
+    except psycopg2.DatabaseError :
+        count = 0
+    finally :
+        cursor.close()
+        connection.close()
+        
+    return count
+
+def select_quiz_log_one(number):
+    id = int(number)
+    connection = get_connection()
+    cursor = connection.cursor()
+    sql = "SELECT * FROM python_quiz_log WHERE user_id = %s"
+    
+    cursor.execute(sql,(id,))
+    rows=  cursor.fetchall()
+    
+    cursor.close()
+    connection.close()
+    return rows
+
+def UPDATE_quiz_log(name,score,quiznumber1,quiznumber2,quiznumber3,quiznumber4,quiznumber5,quiznumber6,quiznumber7,quiznumber8,quiznumber9,quiznumber10,user_id,):
+    sql = "UPDATE python_quiz_log SET name=%s, score=%s,quiznumber1=%s,quiznumber2=%s,quiznumber3=%s,quiznumber4=%s,quiznumber5=%s,quiznumber6=%s,quiznumber7=%s,quiznumber8=%s,quiznumber9=%s,quiznumber10=%s WHERE user_id =%s"
+    
+    # 例外処理
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()
+        
+        cursor.execute(sql, (name,score,quiznumber1,quiznumber2,quiznumber3,quiznumber4,quiznumber5,quiznumber6,quiznumber7,quiznumber8,quiznumber9,quiznumber10,user_id,))
+        
+        count = cursor.rowcount
+        connection.commit()
+    except psycopg2.DatabaseError :
+        count = 0
+    finally :
+        cursor.close()
+        connection.close()
+        
+    return count
+
+def select_quiz_log():
+    connection = get_connection()
+    cursor = connection.cursor()
+    sql = "SELECT * FROM python_quiz_log ORDER BY score DESC LIMIT 10"
+    
+    cursor.execute(sql,(id,))
+    rows=  cursor.fetchall()
+    
+    cursor.close()
+    connection.close()
+    return rows

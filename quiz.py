@@ -124,7 +124,11 @@ def quiz_info():
         print(number)
         id=int(number)
         quiz_one= db.select_quiz_info(id)
-        return render_template('quiz/quiz_info.html', quiz=quiz_one)
+        user=session.get('user')
+        if user[8]:
+            return render_template('quiz/quiz_info_root.html', quiz=quiz_one)
+        else:
+            return render_template('quiz/quiz_info.html', quiz=quiz_one)
     else:
         return redirect(url_for('index'))
     
@@ -223,7 +227,6 @@ def quiz_update_exe():
             quiz_choice2=request.form.get('quiz_choice2')
             quiz_choice3=request.form.get('quiz_choice3')
             quiz_choice4=request.form.get('quiz_choice4')
-
             count= db.update_quiz(quiz_number,quiz_title,quiz_type,quiz_content,quiz_answer,quiz_choice1,quiz_choice2,quiz_choice3,quiz_choice4,type_list=type_list)
             
             if quiz_title == '':

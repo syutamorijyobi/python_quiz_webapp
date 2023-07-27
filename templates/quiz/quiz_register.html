@@ -3,34 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>クイズ登録画面</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{url_for('mypage')}}"><img src="static/img/favicon.ico"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBasic" aria-controls="navbarBasic" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarBasic">
+            <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('mypage')}}">Top</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('quiz.quiz_list')}}">一覧</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user.user_log')}}">回答履歴</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user.user_rank')}}">ランキング</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user.user_info')}}">アカウント</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('logout')}}">ログアウト</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     
-    <h3>クイズ登録画面</h3>
-    {% if error != null %}
-        <p style="color:red">{{error}}</p>
-    {% endif %}
-    <form action="{{url_for('quiz.quiz_register_exe')}}" method="post">
-        クイズタイトル：<input type="text"name= "quiz_title"><br>
-        クイズタイプ:<select name="quiz_type">
-            {% for type in type_list%}
-            <option value={{type[1]}}>{{type[1]}}</option>
-            {% endfor%}
-        </select><br>
-        クイズ内容：<input type="text"name="quiz_content"><br>
-        クイズ答え：
-        <input type="radio" name="quiz_answer" value="1" required>選択肢１
-        <input type="radio" name="quiz_answer" value="2" required>選択肢２
-        <input type="radio" name="quiz_answer" value="3" required>選択肢３
-        <input type="radio" name="quiz_answer" value="4" required>選択肢４
+    <div class="container mt-4">
+        <h3>クイズ登録画面</h3>
+        {% if error != null %}
+            <p style="color:red">{{error}}</p>
+        {% endif %}
+        <form action="{{url_for('quiz.quiz_register_exe')}}" method="post">
+            <div class="mb-3">
+                <label for="quiz_title" class="form-label">クイズタイトル：</label>
+                <input type="text" name="quiz_title" id="quiz_title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="quiz_type" class="form-label">クイズタイプ：</label>
+                <select name="quiz_type" id="quiz_type" class="form-select" required>
+                    {% for type in type_list %}
+                    <option value="{{type[1]}}">{{type[1]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="quiz_content" class="form-label">クイズ内容：</label>
+                <input type="text" name="quiz_content" id="quiz_content" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">クイズ答え：</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="quiz_answer" value="1" id="option1" required>
+                    <label class="form-check-label" for="option1">選択肢１</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="quiz_answer" value="2" id="option2" required>
+                    <label class="form-check-label" for="option2">選択肢２</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="quiz_answer" value="3" id="option3" required>
+                    <label class="form-check-label" for="option3">選択肢３</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="quiz_answer" value="4" id="option4" required>
+                    <label class="form-check-label" for="option4">選択肢４</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="quiz_choice1" class="form-label">クイズ選択肢１：</label>
+                <input type="text" name="quiz_choice1" id="quiz_choice1" class="form-control" value="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="quiz_choice2" class="form-label">クイズ選択肢２：</label>
+                <input type="text" name="quiz_choice2" id="quiz_choice2" class="form-control" value="2" required>
+            </div>
+            <div class="mb-3">
+                <label for="quiz_choice3" class="form-label">クイズ選択肢３：</label>
+                <input type="text" name="quiz_choice3" id="quiz_choice3" class="form-control" value="3" required>
+            </div>
+            <div class="mb-3">
+                <label for="quiz_choice4" class="form-label">クイズ選択肢４：</label>
+                <input type="text" name="quiz_choice4" id="quiz_choice4" class="form-control" value="4" required>
+            </div>
+            <a href="{{url_for('quiz.quiz_type_register_form')}}" class="btn btn-primary">クイズタイプ登録</a>
+            <button type="submit" class="btn btn-success">登録</button>
+        </form>
+    </div>
 
-        クイズ選択肢１：<input type="text" name="quiz_choice1" value="1" required><br>
-        クイズ選択肢２：<input type="text" name="quiz_choice2" value="2" required><br>
-        クイズ選択肢３：<input type="text" name="quiz_choice3" value="3" required><br>
-        クイズ選択肢４：<input type="text" name="quiz_choice4" value="4" required><br>
-        <a href= "{{url_for('quiz.quiz_type_register_form')}}">クイズタイプ登録</a>
-        <button type="submit">登録</button>
-    </form>
+    <!-- Bootstrap JS (optional, if you need to use Bootstrap's JavaScript components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

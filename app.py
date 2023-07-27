@@ -126,6 +126,11 @@ def quiz_respond():
                 else:
                     body=f'この度はクイズアプリをご利用いただき誠にありがとうございます。今回の回答結果は10問正解中{result}問正解しました。次は高得点を目指して頑張りましょう'
                 mail.send_mail(to,subject,body)
+                
+                if not db.select_quiz_log_one(user[0]):
+                    db.insert_quiz_log(user[0],user[1],result,quiz_list[0][0],quiz_list[1][0],quiz_list[2][0],quiz_list[3][0],quiz_list[4][0],quiz_list[5][0],quiz_list[6][0],quiz_list[7][0],quiz_list[8][0],quiz_list[9][0],)
+                else:
+                    db.UPDATE_quiz_log(user[1],result,quiz_list[0][0],quiz_list[1][0],quiz_list[2][0],quiz_list[3][0],quiz_list[4][0],quiz_list[5][0],quiz_list[6][0],quiz_list[7][0],quiz_list[8][0],quiz_list[9][0],user[0],)
                 return render_template('quiz/quiz_result.html')
             else:
                 return render_template('quiz/quiz_respond.html')
