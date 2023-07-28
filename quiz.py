@@ -214,9 +214,9 @@ def quiz_update():
 
 @quiz_dp.route('/quiz/quiz_update_exe',methods=['POST'])
 def quiz_update_exe():
-    type_list=db.select_all_type()
     if 'user'in session:
         user=session.get('user')
+        type_list=db.select_all_type()
         if user[8]:
             quiz_number =int(request.args.get('quiz_number'))
             quiz_title = request.form.get('quiz_title')
@@ -227,7 +227,7 @@ def quiz_update_exe():
             quiz_choice2=request.form.get('quiz_choice2')
             quiz_choice3=request.form.get('quiz_choice3')
             quiz_choice4=request.form.get('quiz_choice4')
-            count= db.update_quiz(quiz_number,quiz_title,quiz_type,quiz_content,quiz_answer,quiz_choice1,quiz_choice2,quiz_choice3,quiz_choice4,type_list=type_list)
+            count= db.update_quiz(quiz_number,quiz_title,quiz_type,quiz_content,quiz_answer,quiz_choice1,quiz_choice2,quiz_choice3,quiz_choice4)
             
             if quiz_title == '':
                 error ='クイズタイトルが未入力です。'
@@ -256,7 +256,7 @@ def quiz_update_exe():
             if  quiz_choice4== '':
                 error ='選択肢４が未入力です。'
                 return render_template('quiz/quiz_update.html',error=error,quiz_number= quiz_number,quiz_title =quiz_title,quiz_type = quiz_type,quiz_content =quiz_content,quiz_answer = quiz_answer,quiz_choice1=quiz_choice1,quiz_choice2=quiz_choice2,quiz_choice3 =quiz_choice3,quiz_choice4=quiz_choice4)
-            count= db.update_quiz(quiz_number,quiz_title,quiz_type,quiz_content,quiz_answer,quiz_choice1,quiz_choice2,quiz_choice3,quiz_choice4,type_list=type_list)
+            count= db.update_quiz(quiz_number,quiz_title,quiz_type,quiz_content,quiz_answer,quiz_choice1,quiz_choice2,quiz_choice3,quiz_choice4)
             if count == 1:
                 msg ='クイズ編集が完了しました。'
                 return render_template('quiz/quiz_update_result.html')
